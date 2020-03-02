@@ -36,8 +36,6 @@ export default props => {
       {...props}
       onClick={onClick}
       ref={mesh}
-      castShadow
-      receiveShadow
       geometry={geometry}
       {...prop}
     >
