@@ -21,7 +21,7 @@ const Main = props => {
   };
 
   return (
-    <Canvas camera={{ position: [0, 0, 2] }} shadowMap={THREE.PCFSoftShadowMap}>
+    <Canvas camera={{ position: [0, 0, 2] }}>
       <Light />
       <ambientLight color={0x404040} intensity={1} />
       {/* Play Button */}
@@ -47,8 +47,8 @@ const Main = props => {
         onClick={handlePlayPrevious}
         isPlaying={isPlaying}
       />
-      <PauseBar position={[-0.125, 0, 0.03]} />
-      <PauseBar position={[-0.025, 0, 0.03]} />
+      <PauseBar position={[-0.15 - 0.025, -0.075, 0]} />
+      <PauseBar position={[-0.05 - 0.025, -0.075, 0]} />
       <Background position={[0, 0, 0]} />
     </Canvas>
   );
