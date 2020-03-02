@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './YoutubePlayer.css';
+import { useLocation } from 'react-router-dom';
 
 // Youtube Statuses
 // YT.PlayerState.ENDED 1
@@ -8,8 +9,15 @@ import './YoutubePlayer.css';
 // YT.PlayerState.BUFFERING 4
 // YT.PlayerState.CUED 5
 
+// A custom hook that builds on useLocation to parse
+// the query string for you.
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const YoutubeWrapper = ({ setPlayerNode, setIsPlayerReady, playerListId }) => {
   let lastData;
+  let query = useQuery();
 
   useEffect(() => {
     const loadVideo = () => {
@@ -39,10 +47,13 @@ const YoutubeWrapper = ({ setPlayerNode, setIsPlayerReady, playerListId }) => {
     };
 
     const onPlayerReady = event => {
+      const queryPlaylist = query.get('p');
+      const playListToPlay = queryPlaylist ? queryPlaylist : playerListId;
+      console.log('playListToPlay', playListToPlay);
       event.target.loadPlaylist({
         enablejsapi: 1,
         listType: 'playlist',
-        list: playerListId,
+        list: playListToPlay,
         suggestedQuality: 'hd720',
         autoplay: 0
       });

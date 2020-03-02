@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Canvas } from 'react-three-fiber';
 import * as THREE from 'three';
 import Light from './Light';
